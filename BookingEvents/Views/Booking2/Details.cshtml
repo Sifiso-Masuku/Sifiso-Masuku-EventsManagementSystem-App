@@ -1,0 +1,108 @@
+﻿@model BookingEvents.Models.Booking2
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Booking2</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @*<dt>
+            @Html.DisplayNameFor(model => model.artist.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.artist.Name)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Event_Type.EventName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Event_Type.EventName)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.venueId.venueName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.venue.venueName)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.EventDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.duration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.duration)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumPeople)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumPeople)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventCost)
+        </dd>
+
+        
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.FlowerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FlowerId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LightId)
+        </dt>*@
+
+        @*<dd>
+            @Html.DisplayFor(model => model.LightId)
+        </dd*@>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BookingId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

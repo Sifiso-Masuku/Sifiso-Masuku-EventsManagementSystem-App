@@ -1,0 +1,100 @@
+﻿@model IEnumerable<BookingEvents.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+    var message = TempData["AlertMessage"] ?? string.Empty;
+}
+<script>
+            var msg = '@message';
+            if (msg)
+                alert(msg)
+</script>
+<h2>My Booking Orders</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NumPeople)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.approval)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Venue1.venueName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Venue1.Cost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Event_Type.EventName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalCost)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumPeople)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.approval)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Venue1.venueName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Venue1.Cost)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Event_Type.EventName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalCost)
+        </td>
+        <td>
+        <td>
+            <div class="btn-group">
+                <a class="btn btn-success" href="@Url.Action("PrintInvoice", "Orders", new { id = item.OrderId,st=item.approval }, null)">
+                    <span class="icon_lightbulb_alt"></span>
+                    Invoice
+                </a>
+            </div>
+        </td>
+        @if (item.approval=="Approved")
+        {
+            if (User.IsInRole("Customer"))
+            {
+                <td>
+                    <div class="btn-group">
+                        <a class="btn btn-success" href="@Url.Action("OnceOff", "Payment", new { payment = item.TotalCost, id=item.OrderId }, null)">
+                            <span class="icon_lightbulb_alt"></span>
+                            Pay
+                        </a>
+                    </div>
+                </td>
+
+            }
+        }
+    </tr>
+        }
+
+</table>

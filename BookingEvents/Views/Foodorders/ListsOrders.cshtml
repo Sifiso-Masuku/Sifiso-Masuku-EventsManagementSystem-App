@@ -1,0 +1,61 @@
+﻿@model IEnumerable<BookingEvents.Models.MealOrder>
+
+@{
+    ViewBag.Title = "ListsOrders";
+}
+
+@if (User.IsInRole("Student"))
+{
+    <h2> My Orders</h2>
+
+}
+else
+{
+    <h2>All Orders</h2>
+
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderNumber)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderNumber)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.OrderId }) |*@
+            @*@Html.ActionLink("Details", "Details", new { id=item.OrderId }) |*@
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.OrderId })*@
+        </td>
+    </tr>
+}
+
+</table>

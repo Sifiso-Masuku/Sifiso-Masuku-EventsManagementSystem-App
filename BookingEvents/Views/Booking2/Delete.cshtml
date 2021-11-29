@@ -1,0 +1,120 @@
+﻿@model BookingEvents.Models.Booking2
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Booking2</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @*<dt>
+            @Html.DisplayNameFor(model => model.artist.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.artist.Name)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Event_Type.EventName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Event_Type.EventName)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.venue.venueName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.venue.venueName)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.EventDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.duration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.duration)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumPeople)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumPeople)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventCost)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.FoodId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FoodId)
+        </dd>*@
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.FlowerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FlowerId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LightId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LightId)
+        </dd>*@
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

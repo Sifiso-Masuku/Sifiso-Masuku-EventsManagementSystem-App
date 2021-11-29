@@ -1,0 +1,87 @@
+﻿@model IEnumerable<BookingEvents.Models.Foodorder>
+
+@{
+    ViewBag.Title = "ItemsInOrder";
+}
+
+<br />
+<br />
+
+<h2>Equipment In Booking</h2>
+
+@using (Html.BeginForm())
+{
+
+    <p style="text-align:right;">
+        Find : @Html.TextBox("SearchString", "", new { placeholder = "Enter Reference Number" })
+        <input type="submit" value="Search" />
+    </p>
+
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+
+
+        <th>
+            @Html.DisplayNameFor(model => model.Picture)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderStatus)
+        </th>*@
+
+        <th>
+            @Html.DisplayNameFor(model => model.OrderId)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.ItemName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.quantity)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.price)
+    </td>
+
+
+    <td>
+        <a><img src="data:image/png;base64,@Convert.ToBase64String(item.Picture, 0, item.Picture.Length)" style="width: 40px; height: 40px" alt="" /></a>
+
+    </td>
+    @*<td>
+            @Html.DisplayFor(modelItem => item.Total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderStatus)
+        </td>*@
+
+
+    <td>
+        @Html.DisplayFor(modelItem => item.OrderId)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.cart_item_id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.cart_item_id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.cart_item_id })
+    </td>
+</tr>
+    }
+
+</table>

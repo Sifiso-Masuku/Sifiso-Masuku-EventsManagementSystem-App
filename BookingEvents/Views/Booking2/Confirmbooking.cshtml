@@ -1,0 +1,118 @@
+﻿@using Microsoft.AspNet.Identity;
+@model BookingEvents.Models.Booking2
+
+@{
+    ViewBag.Title = "Booking Success";
+}
+
+
+<h4 class="text-success text-center alert-dismissable">Booking Successfully Created</h4>
+<hr />
+<div class="col alert-success">
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EventDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EventDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.duration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.duration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumPeople)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumPeople)
+        </dd>
+        @*@*@*@*<dd>
+            @foreach (var item in Model..ToList())
+            {
+            }
+            @*@ @*Html.DisplayFor(model => model.SelectedFruits)*@
+        @*</dd>
+        <dd>*@ 
+            @*@Html.DisplayFor(model => model.FoodItems)*@
+            @*@foreach (var item in Model.SelectedItems)
+            {
+                item.ToString();
+            }
+        </dd>
+
+        <dd>
+            @Html.DisplayFor(model => model.SelectedItems)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.venue.venueName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.venue.venueName)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.DepositFee)
+        </dt>
+
+        <dd>
+            <strong>@Html.DisplayFor(model => model.DepositFee)</strong>
+        </dd>*@
+        <dd>
+            @Html.DisplayFor(model => model.Event_Type.EventName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Event_Type.EventName)
+        </dt>
+
+        @*<dd>
+            @Html.DisplayFor(model => model.NumOfPeople)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalCost)
+        </dt>
+
+        <dd>
+            <strong>@Html.DisplayFor(model => model.TotalCost)</strong>
+        </dd>
+        <dt>
+            @Html.DisplayFor(model => model.SelectedFruits)
+        </dt>
+        <dd>
+            @foreach (var item in Model.SelectedItems)
+            {
+                @Html.EditorFor(model => model.SelectedFruits)
+            }
+            @Html.DisplayFor(model => model.TotalCost)
+        </dd>*@
+    </dl>
+    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="KQAE3V5U9SYCG">
+        <input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+
+</div>
+
+
+
+
+
+

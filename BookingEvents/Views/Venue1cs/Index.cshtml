@@ -1,0 +1,61 @@
+﻿@model IEnumerable<BookingEvents.Models.Venue1cs>
+
+@{
+    ViewBag.Title = "Index";
+}
+<br id="venue"/>
+<br />
+<br />
+<br />
+<br />
+<h2 align="center">Venues</h2>
+
+<p>
+    @Html.ActionLink("Add New venue", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.venueName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumGests)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.venueName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumGests)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cost)
+        </td>
+        <td>
+            <img src="@Url.Action("RenderImage", "Venue1cs", new { id = item.venueId})" width="50" height="60" />
+        </td>
+        <td>
+            <a href="@Url.Action("Details","Venue1cs", new { id=item.venueId })" rel="tooltip" title="View" class="btn btn-info btn-simple btn-xs">Details<i class="fa fa-eye"></i></a>
+            <a href="@Url.Action("Edit","Venue1cs", new { id=item.venueId })" rel="tooltip" title="Edit" class="btn btn-success btn-simple btn-xs">Edit<i class="fa fa-edit"></i></a>
+            <a href="@Url.Action("Delete", "Venue1cs", new { id = item.venueId })" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">Delete<i class="fa fa-times"></i></a>
+        </td>
+    </tr>
+}
+
+</table>

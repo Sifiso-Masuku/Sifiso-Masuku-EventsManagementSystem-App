@@ -1,0 +1,54 @@
+﻿@model IEnumerable<BookingEvents.Models.Venue1cs>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Book venues</h2>
+
+<hr />
+<div class="row">
+    @foreach (var item in Model)
+    {
+        @*<div class="col-md-4">
+                <div class="card " style="width: 18rem;">
+                    <img src="@Url.Action("RenderImage", "Vehicles", new { id = item.VehicleId})" width="300" height="250" />
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            @Html.DisplayFor(modelItem => item.VehicleCategory.CategoryName)
+                            @Html.DisplayFor(modelItem => item.VehicleModel.VehicleModelGeneration)
+                            @Html.DisplayFor(modelItem => item.year)
+                        </h5>
+                        <h4><strong>R </strong>@Html.DisplayFor(modelItem => item.VehicleUnitBuyingPrice)</h4>
+                        <a href="/BookingTestDrives/BookTestDrive/@item.VehicleId" class="btn btn-primary">Book Test Drive</a>
+                    </div>
+                </div>
+            </div>*@
+
+    <div class="col-10 mx-auto my-3 col-md-6 col-lg-4">
+        <div class="card car-card">
+            <img src="@Url.Action("RenderImage", "Venue1cs", new { id = item.venueId})" width="300" height="250" />
+            @*<img src="~/img/the_car.png" class="card-img-top car-img" alt="" width="200" height="200" />*@
+            @*<img src="Iimages/Isuzu.jpg" class="card-img-top car-img" alt="">*@
+            <!--card body-->
+            <div class="card-body">
+                <div class="car-info d-flex justify-content-between">
+                    <!--first  flex child-->
+                    <!--second  flex child-->
+                    <h5 class="car-value align-self-centre py-2 px3">
+                        <span class="car-price">  Cost: @Html.DisplayFor(modelItem => item.Cost)</span>
+                    </h5>
+                </div>
+            </div>
+            <!--end of card-->
+            <div class="card-footer text-capitalize d-flex justify-content-between">
+                @*<p><span><i class="fas fa-car"></i></span>@Html.DisplayFor(modelItem => item..CategoryName)</p>*@
+                <p><span><i class="fas fa-cogs"></i></span> Capacity: @Html.DisplayFor(modelItem => item.NumGests)</p>
+                <p><span><i class="fas fa-gas-pump"></i></span> Venue Name: @Html.DisplayFor(modelItem => item.venueName)</p>
+            </div>
+            @Html.ActionLink("Book Now", "Create", "orders", new { id = item.venueId,c=item.Cost }, new { @class = "btn btn-info" })
+        </div>
+        <br />
+    </div>
+    }
+</div>

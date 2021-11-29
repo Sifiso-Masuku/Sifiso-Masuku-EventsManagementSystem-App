@@ -1,0 +1,115 @@
+﻿@model IEnumerable<BookingEvents.Models.FoodOrder>
+@using BookingEvents.Models;
+@{
+    ViewBag.Title = "Index";
+    //Layout = "~/Views/Shared/_ShopLayout -Cart.cshtml";
+    Cart_Service cart_Service= new Cart_Service();
+    string id = null;
+}
+
+@if (User.IsInRole("Employee") || User.IsInRole("SystemAdmin"))
+{
+    <h2>All Orders</h2>
+
+}
+else
+{
+    <h2> Confirm your Order</h2>
+
+}
+
+
+@using (Html.BeginForm(actionName: "COnfirmOrder", controllerName: "FoodOrders", routeValues: null, method: FormMethod.Post))
+{
+
+    <table class="table">
+        <tr>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Picture)
+            </th>
+
+         
+            <th>
+                @Html.DisplayNameFor(model => model.quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderDate)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+               
+                <td>
+                    <div class="product-img common-cart-img">
+                        @if (item.Picture != null)
+                        {
+                            var base64 = Convert.ToBase64String(inArray: item.Picture);
+                            var imgSrc = string.Format(format: "data:image/gif;base64,{0}", arg0: base64);
+                            <span class="group"> <img src="@imgSrc " style="width:200px;height:100px;" /> </span>
+                        }
+                    </div>
+                </td>
+              
+                <td>
+                    @Html.DisplayFor(modelItem => item.quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDate)
+                </td>
+
+                <td>
+                   
+                  
+                    @Html.ActionLink("Delete", "Delete", new { id = item.cart_item_id })
+                </td>
+            </tr>
+            id = item.cart_id;
+        }
+
+        <tr>
+
+            <td>
+                @Html.ActionLink("Confirm", "COnfirmOrder", "FoodOrders", new { area = "" }, new { @class = "btn btn-block btn-success" })
+                @*<input type="submit" value="Confirm" class="btn btn-default" />*@
+            </td>
+
+          
+            <td>
+                <div>
+                    Total Order Amount: R  @cart_Service.GetCartTotal(id)
+                    
+                    
+
+                </div>
+            </td>
+
+           
+        </tr>
+
+        
+    </table>
+
+}

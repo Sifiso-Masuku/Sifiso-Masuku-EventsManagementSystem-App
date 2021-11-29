@@ -1,0 +1,103 @@
+﻿@model IEnumerable<BookingEvents.Models.Booking2>
+
+@{
+    ViewBag.Title = "Index";
+}
+<br />
+<br />
+<br />
+<br />
+<h2 align="center">Bookings</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.artist.Name)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.Customer.Name)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Event_Type.EventName)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.venue.venueName)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumPeople)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventCost)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.ReferenceNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Venuu)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.LightId)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.artist.Name)
+        </td>*@
+       w
+        <td>
+            @Html.DisplayFor(modelItem => item.Event_Type.EventName)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.venue.venueName)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCreated)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.NumPeople)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventCost)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.ReferenceNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Venuu)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.LightId)
+        </td>*@
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.BookingId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.BookingId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.BookingId })
+        </td>
+    </tr>
+}
+
+</table>

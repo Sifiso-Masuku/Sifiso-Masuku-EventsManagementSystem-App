@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/css/DropDown.css">
+    <title> Bight Ideas</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @using System.Web.Optimization
+    @Scripts.Render("~/bundles/jquery")
+
+    <style>
+        .my_text {
+            font-family: Arial, Helvetica, sans-serif font-size: 60px;
+        }
+
+        background {
+            color: lightblue;
+            opacity: 0.5;
+            filter: alpha(opacity=50); /* For IE8 and earlier */
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+
+    @*<img src="~/Content/tRUCK/wp2150698-dark-road-wallpapers.jpg" />*@
+    <body>
+        <div class="my_text">
+            <nav class="w3-sidebar w3-green w3-animate-left w3-xxlarge" style="display:none;padding-top:50px;left:0;z-index:2" id="InSidebar">
+
+
+                @*<a onclick="closeNav()" class="w3-bar-item w3-button">
+                        @Html.ActionLink("Administration", "Index", "Admin")
+                    </a><a onclick="closeNav()" class="w3-bar-item w3-button">
+                        @Html.ActionLink("Supplier", "Index", "Admin")
+                    </a>*@
+            </nav>
+
+
+            @*<nav class="w3-black w3-animate-left w3-xxlarge" style="display:none;padding-top:50px;left:0;z-index:2" id="mySidebar">*@
+
+
+            <div id="menu" class="w3-green w3-animate-left w3-xlarge" style="display:none;left:0;z-index:2">
+                <ul>
+                    <li class="butlook" href="javascript:void(0)" onclick="closeNav()" class="w3-button w3-black w3-xxxlarge w3-display-topright" style="padding:0px;  margin-left: 250px;">
+                        <i class="fa fa-remove"></i>
+                    </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Administrator"))
+                        {
+                            <li class="butlook">
+                                @Html.ActionLink("Manage Departments", "Index", "Departments")<i class="fa fa-caret-right"></i>
+                                <ul>
+                                    @*<li class="butlook">@Html.ActionLink("View Registered users", "Index", "Admin")</li>*@
+                                     <li class="butlook">@Html.MenuLink("Create Event Types", "Index", "Event_Type", null, "fa fa-plus", null)</li>
+                                    <li class="butlook">@Html.MenuLink("Add New Item", "Create", "Items", null, "fa fa-plus", null)</li>
+                                    <li class="butlook">@Html.MenuLink("View all Items", "Index", "Items", null, "fa fa-list", null)</li>
+                                    <li class="butlook">@Html.MenuLink("Services", "Index", "Departments", null, "fa fa-list", null)</li>
+
+                                </ul>
+                            </li>
+                            <li class="butlook">
+                                @Html.ActionLink("Manage Orders", "Index", "Orders")<i class="fa fa-caret-right"></i>
+                            </li>
+                        }if (User.IsInRole("Staff"))
+                        {
+                            <li class="butlook">
+                                @Html.ActionLink("My Details", "Index", "StaffMemmbers")<i class="fa fa-caret-right"></i>
+                                <ul>
+                                    <li class="butlook">@Html.ActionLink("Add Items ", "Create", "Items")
+                                    <li class="butlook">@Html.ActionLink("Make an Order", "CreateList", "Orderz")
+                                    <li class="butlook">@Html.ActionLink("View Orders", "Index", "Orders")
+
+
+                                </ul>
+                            </li>
+                        }
+
+
+                        if (User.IsInRole("Customer"))
+                        {
+                            <li class="butlook">
+                                <a class="w3-bar-item w3-button"><font size="4">@Html.ActionLink("Our Venues", "Venues", "Venue1cs", new { area = "" }, new { @class = "navbar-brand" }) </font></a>
+                                @Html.ActionLink("My Orders", "Index", "Orders")<i class="fa fa-caret-right"></i>
+
+                            </li>
+                        }
+                    }
+                    </ul>
+                <ul></ul>
+
+            </div>
+
+
+            @*<a onclick="closeNavA()" class="w3-bar-item w3-button" >
+                    @Html.ActionLink("Administration", "Index", "Admin")<i class="fa fa-caret-right"></i>
+                </a><a onclick="closeNav()" class="w3-bar-item w3-button">
+                    @Html.ActionLink("Supplier", "Index", "Admin")<i class="fa fa-caret-right"></i>
+                </a>*@
+
+            @*</nav>*@
+
+            <div class="w3-top">
+
+                <div class="w3-bar w3-green w3-black w3-wide w3-padding w3-card">
+                    <div class="w3-button w3-padding-16 w3-left" onclick="openNav()">☰</div>
+                    <a class="w3-bar-item w3-button"><font size="4"><b></b> @Html.ActionLink("Bight Ideas", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" }) </font></a>
+                    <!-- Float links to the right. Hide them on small screens -->
+
+                    <a class="w3-bar-item w3-button"><font size="4">@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" }) </font></a>
+                    <a class="w3-bar-item w3-button"><font size="4">@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "navbar-brand" }) </font></a>
+                    @*<a class="w3-bar-item w3-button"><font size="4">@Html.ActionLink("Contact US", "emailComplain", "Emailsender", new { area = "" }, new { @class = "navbar-brand" }) </font></a>*@
+                    @if (User.IsInRole("Customer"))
+                    {<a class="w3-bar-item w3-button" href="@Url.Action("ShoppingCart", "Shopping")">
+                            <font size="4">
+                                <i class="fa fa-shopping-cart"></i>   @{Html.RenderAction("CartSummary", "Shopping");}
+                            </font>
+                        </a>
+                    }
+                    <a class="w3-bar-item w3-button"><font size="4"> @Html.Partial("_LoginPartial")</font></a>
+
+                </div>
+            </div>
+
+        </div>
+
+        <br />
+        <div class="container body-content">
+            <div style=" margin-bottom:10%"></div>
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Bright Ideas</p>
+            </footer>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+
+
+        <script>
+            // Script to open and close sidebar
+            //function openNav() {
+            //    document.getElementById("mySidebar").style.width = "25%";
+            //    document.getElementById("mySidebar").style.display = "block";
+            //}
+            function openNav() {
+                document.getElementById("menu").style.width = "22%";
+                document.getElementById("menu").style.display = "block";
+            }
+
+            function closeNav() {
+                document.getElementById("menu").style.display = "none";
+            }
+
+
+
+
+        </script>
+        </>
+</html>

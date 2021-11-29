@@ -1,0 +1,165 @@
+﻿@model BookingEvents.ViewModel.CustomerOrderProduct
+@{
+    ViewBag.Title = "Customer Invoice";
+    double ordPrice = 0;
+  Layout = null;
+}
+<br />
+<div class="table-bordered bg-success">
+    <h2 class="text-center">Booking Bill</h2>
+    <h4 class="text-center"><b>Invoice Number: @ViewBag.invoiceNumber</b></h4>
+    <br />
+    <table class="table table-responsive " style=" border:hidden;">
+        <tr class="text-center">
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalAmount)
+            </th>           
+        </tr>
+
+        <tr>    
+            <td>
+                @Html.DisplayFor(modelItem => Model.CustomerEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.CustomerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.OrderID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.OrderStatus)
+            </td> 
+            <td>
+                @Html.DisplayFor(modelItem => Model.TotalAmount)
+            </td>
+            
+        </tr>
+
+    </table>
+    <div class="table-bordered bg-success">
+        <h4 class="text-center"><b>Venue - Event Details</b></h4>
+        <br />
+        <table class="table table-responsive " style=" border:hidden;">
+            <tr class="text-center">           
+                <th>
+                    @Html.DisplayNameFor(model => model.Venue)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.VenuePrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Event)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EventPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NumberOfPeople)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndDate)
+                </th>
+            </tr>
+
+            <tr>              
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Venue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.VenuePrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Event)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.EventPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.NumberOfPeople)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.EndDate)
+                </td>
+
+            </tr>
+
+        </table>
+        <br />
+        <h4>Categories Ordered</h4>
+        <table class="table table-responsive">
+            <tr class=" text-center">
+                <th>
+                    @Html.DisplayNameFor(model => model.order.ProductName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.order.UnitPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.order.dty)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.order.TotalPrice)
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model.orderProducts)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UnitPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dty)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalPrice)
+                    </td>
+                </tr>
+                ordPrice += item.TotalPrice;
+            }
+            <tr>
+                <td></td>
+                <td>
+                    Order Total Cost : @ordPrice
+                </td>
+            </tr>
+        </table>
+        @*<div class="text-center">
+            <h3>@Html.DisplayNameFor(model => model.TotalPrice)</h3>
+            @{
+                double totalPrice = 0;
+                int customerID = 0;
+            }
+            @foreach (var item in Model)
+            {
+                customerID = item.CustomerID;
+                totalPrice += item.UnitPrice;
+            }
+            <h3>@totalPrice</h3>
+        </div>*@
+    </div>
+<br />
+@*<div>
+    <button type="button" onclick="location.href='@Url.Action("ConfirmedOrders", "Orders", new { id = @customerID })'" class="btn btn-danger">Back to List</button>
+</div>*@

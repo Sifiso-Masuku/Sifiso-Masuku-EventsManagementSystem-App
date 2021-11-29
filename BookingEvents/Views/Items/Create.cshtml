@@ -1,0 +1,127 @@
+﻿@model BookingEvents.Models.Item
+
+@{
+    ViewBag.Title = "Add Item";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<br />
+<br />
+<br />
+<div class="kt-portlet">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title" align="center">
+                Adding Items
+            </h3>
+        </div>
+    </div>
+    <br />
+    <br />
+    @using (Html.BeginForm(actionName: "Create", controllerName: "Items", routeValues: null, method: FormMethod.Post, htmlAttributes: new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="kt-portlet__body">
+        <div class="form-group row">
+            <div class="col-lg-5">
+                <label> Name:</label>
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter item name" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="col-lg-5">
+                <label class="">Category:</label>
+                @Html.DropDownList("Department_ID", null, "--- Please Select ---", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Department_ID, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+        <div class="form-group row">
+
+            <div class="col-lg-5">
+                <label>Quantiy In Stock:</label>
+                <div class="kt-input-icon">
+                    @Html.EditorFor(model => model.QuantityInStock, new { htmlAttributes = new { @class = "form-control", @placeholder = "Quantity In Stock" } })
+                    @Html.ValidationMessageFor(model => model.QuantityInStock, "", new { @class = "text-danger" })
+                    <span class="kt-input-icon__icon kt-input-icon__icon--right"><span><i class="la la-map-marker"></i></span></span>
+                </div>
+
+            </div>
+            <div class="col-lg-5">
+                <label>Description:</label>
+                <div class="kt-input-icon">
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Description" } })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    <span class="kt-input-icon__icon kt-input-icon__icon--right"><span><i class="la la-map-marker"></i></span></span>
+                </div>
+
+            </div>
+        </div>
+        <div class="form-group row">
+
+            <div class="col-lg-5">
+                <label>Sale Price:</label>
+                <div class="kt-input-icon">
+                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", @placeholder = "0.00" } })
+                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                    <span class="kt-input-icon__icon kt-input-icon__icon--right"><span><i class="la la-map-marker"></i></span></span>
+                </div>
+
+            </div>
+            <tr>
+                <div class="col-lg-5">
+
+                    <th>@Html.LabelFor(model => model.Picture)</th>
+                    <td>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-file-picture-o"></i>
+                            </div>
+                            <input type="file" name="img_upload" accept=".jpeg,.jpg,.png" onchange="readURL(this);" class="form-control" required="required" />
+                        </div>
+                    </td>
+            </tr>
+        </div>
+        <div class="col-lg-5">
+            <img id="image_preview" src="#" alt="" @*style="border: 5px solid #ccc"*@ />
+        </div>
+
+
+        <tr>
+            <td>
+                <a class="btn btn-default" href="@Url.Action("Index","Items")">
+                    <i class="fa fa-angle-left"></i>
+                    Back to List
+                </a>
+            </td>
+            <td class="pull-right">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </td>
+        </tr>
+    </div>
+
+    }
+</div>
+
+
+<script type="text/javascript">
+    //image preview
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#image_preview')
+                    .attr('src', e.target.result)
+                    .width(300)
+                    .height(300);
+
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+

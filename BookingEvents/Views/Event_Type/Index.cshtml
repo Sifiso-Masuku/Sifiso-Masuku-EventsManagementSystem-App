@@ -1,0 +1,49 @@
+﻿@model IEnumerable<BookingEvents.Models.Event_Type>
+
+@{
+    ViewBag.Title = "Index";
+}
+<br id="event"/>
+<br />
+<br />
+<br />
+<br />
+<h2 >List of event types</h2>
+
+<p>
+    @Html.ActionLink("Add new Event type ", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EventName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BasicPrice)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Image)
+            </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BasicPrice)
+        </td>
+        @*<td>
+            <img src="@Url.Action("RenderImage", "Event_Type", new { id = item.EventId})" width="50" height="60" />
+        </td>*@
+        <td>
+            <a href="@Url.Action("Details","Event_Type", new { id=item.EventId })" rel="tooltip" title="View" class="btn btn-info btn-simple btn-xs">Details<i class="fa fa-eye"></i></a>
+            <a href="@Url.Action("Edit","Event_Type", new { id=item.EventId })" rel="tooltip" title="Edit" class="btn btn-success btn-simple btn-xs">Edit<i class="fa fa-edit"></i></a>
+            <a href="@Url.Action("Delete", "Event_Type", new { id = item.EventId })" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">Delete<i class="fa fa-times"></i></a>
+        </td>
+    </tr>
+}
+
+</table>
